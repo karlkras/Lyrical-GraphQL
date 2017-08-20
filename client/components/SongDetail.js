@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import getSong from '../queries/fetchSong';
+import { Link, hashHistory } from 'react-router';
+
+import LyricCreate from './LyricCreate';
 
 
 class SongDetail extends Component {
@@ -9,12 +12,19 @@ class SongDetail extends Component {
     // }
 
     render() {
-        console.log(this.props);
+        const { song } = this.props.data;
+
+        if ( ! song ) { return <div></div> }
+
         return (
             <div>
+                <Link to="/">
+                    Home
+                </Link>
                 <h3>
-                    Song Detail
+                    {song.title}
                 </h3>
+                <LyricCreate/>
             </div>
         )
     }
